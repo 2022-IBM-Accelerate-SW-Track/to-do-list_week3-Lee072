@@ -8,7 +8,8 @@ class AddTodo extends Component {
     super();
     this.state = {
       content: "",
-      date: ""
+      date: "",
+      due: null,
     };
   }
   // The handleChange function updates the react state with the new input value provided from the user and the current date/time.
