@@ -63,13 +63,14 @@ class AddTodo extends Component {
           value={this.state.content}
         />
         
-      <LocalizationProvider dateAdapter={AdapterDateFns}>         
+      <LocalizationProvider dateAdapter={AdapterDateFns} >         
         <DesktopDatePicker
           id="new-item-date"
           label="Due Date"
           value={this.due}
           onChange={this.setDate}
           renderInput={(params) => <TextField {...params} />}
+          onSubmit={this.due}
         />
       </LocalizationProvider>
 
