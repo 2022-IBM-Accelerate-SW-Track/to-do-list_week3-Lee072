@@ -14,12 +14,9 @@ const Todos = ({ todos, deleteTodo }) => {
     todos.map((todo) => {
       var color = "#ffffffff";
 
-      if (new Date(todo.due) !== new Date(todo.date)){
-        color = "#FF0000";
-      } else {
-        var color = "#ffffffff";
-
-      }
+      if (new Date(todo.due) !== new Date()){
+        color = "#ADD8E6";
+      } 
 
 
 
