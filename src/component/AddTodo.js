@@ -27,7 +27,6 @@ class AddTodo extends Component {
   // setDate()
   setDate = (event) => {
     this.setState({
-      context: event.target.value,
       due: new Date(event).toLocaleDateString()
     });
   }
