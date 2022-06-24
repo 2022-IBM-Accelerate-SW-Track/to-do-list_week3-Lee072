@@ -117,7 +117,7 @@ afterEach(() => {
   fireEvent.change(inputDate, { target: { value: dueDate}});
   fireEvent.click(element);
 
-  // im not sure..
+  // im not sure.. Kareith Dyce gave me very helpful advice but I'm just not confident in  my answers
 
   const check = screen.getByText(/Dance/i).toHaveStyle('color:#ffffffff');
   expect(check).toBeInTheDocument();
