@@ -21,6 +21,9 @@ afterEach(() => {
 
  test('test that App component doesn\'t render dupicate Task', () => {
   render(<App />);
+  const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
+  const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
+  const element = screen.getByRole('button', {name: /Add/i});
  });
 
  test('test that App component doesn\'t add a task without task name', () => {
@@ -41,9 +44,15 @@ afterEach(() => {
 
  test('test that App component can be deleted thru checkbox', () => {
   render(<App />);
+  const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
+  const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
+  const element = screen.getByRole('button', {name: /Add/i});
  });
 
 
  test('test that App component renders different colors for past due events', () => {
   render(<App />);
+  const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
+  const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
+  const element = screen.getByRole('button', {name: /Add/i});
  });
