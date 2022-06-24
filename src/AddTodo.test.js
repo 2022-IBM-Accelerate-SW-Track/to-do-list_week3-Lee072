@@ -1,3 +1,4 @@
+import { style } from '@mui/system';
 import { toBeInTheDocument } from '@testing-library/jest-dom/dist/matchers';
 import { render, screen, fireEvent} from '@testing-library/react';
 import { unmountComponentAtNode } from 'react-dom';
@@ -55,10 +56,15 @@ afterEach(() => {
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
   const element = screen.getByRole('button', {name: /Add/i});
-  fireEvent.change(inputTask, { target: { value: "History Test"}});
+  const dueDate = "06/24/2022";
+
+  fireEvent.change(inputTask, { target: { value: "Dance"}});
   fireEvent.change(inputDate, { target: { value: dueDate}});
   fireEvent.click(element);
 
+  const check = screen.getByText(/Dance/i);
+
+  expect(check).toBeInTheDocument();
 
 
  });
@@ -68,9 +74,16 @@ afterEach(() => {
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
   const element = screen.getByRole('button', {name: /Add/i});
-  fireEvent.change(inputTask, { target: { value: "History Test"}});
+  const dueDate = "06/24/2022";
+
+  fireEvent.change(inputTask, { target: { value: "Dance"}});
   fireEvent.change(inputDate, { target: { value: dueDate}});
   fireEvent.click(element);
+
+  const check = screen.getByText(/Dance/i);
+
+  expect(check).toBeInTheDocument();
+
  });
 
 
@@ -97,7 +110,16 @@ afterEach(() => {
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
   const element = screen.getByRole('button', {name: /Add/i});
-  fireEvent.change(inputTask, { target: { value: "History Test"}});
+  //different date
+  const dueDate = "06/22/2022";
+
+  fireEvent.change(inputTask, { target: { value: "Dance"}});
   fireEvent.change(inputDate, { target: { value: dueDate}});
   fireEvent.click(element);
+
+  // im not sure..
+
+  const check = screen.getByText(/Dance/i).toHaveStyle('color:#ffffffff');
+  expect(check).toBeInTheDocument();
+
  });
