@@ -1,3 +1,4 @@
+import { toBeInTheDocument } from '@testing-library/jest-dom/dist/matchers';
 import { render, screen, fireEvent} from '@testing-library/react';
 import { unmountComponentAtNode } from 'react-dom';
 import App from './App';
@@ -16,14 +17,37 @@ afterEach(() => {
   container = null;
 });
 
-
+// getByText: Searching for one instance
 
 
  test('test that App component doesn\'t render dupicate Task', () => {
   render(<App />);
+
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
   const element = screen.getByRole('button', {name: /Add/i});
+
+  const dueDate = "06/24/2022";
+  
+  //task 1
+  fireEvent.change(inputTask, { target: { value: "Dance"}});
+  fireEvent.change(inputDate, { target: { value: dueDate}});
+  fireEvent.click(element);
+
+  //task 2
+  fireEvent.change(inputTask, { target: { value: "Dance"}});
+  fireEvent.change(inputDate, { target: { value: dueDate}});
+  fireEvent.click(element);
+
+  const check = screen.getByText(/Dance/i);
+
+  expect(check).toBeInTheDocument();
+
+
+
+  
+
+
  });
 
  test('test that App component doesn\'t add a task without task name', () => {
@@ -31,6 +55,12 @@ afterEach(() => {
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
   const element = screen.getByRole('button', {name: /Add/i});
+  fireEvent.change(inputTask, { target: { value: "History Test"}});
+  fireEvent.change(inputDate, { target: { value: dueDate}});
+  fireEvent.click(element);
+
+
+
  });
 
  test('test that App component doesn\'t add a task without due date', () => {
@@ -38,15 +68,22 @@ afterEach(() => {
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
   const element = screen.getByRole('button', {name: /Add/i});
+  fireEvent.change(inputTask, { target: { value: "History Test"}});
+  fireEvent.change(inputDate, { target: { value: dueDate}});
+  fireEvent.click(element);
  });
 
 
 
  test('test that App component can be deleted thru checkbox', () => {
   render(<App />);
-  const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
-  const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
+  const inputTask = screen.getByRole('checkbox');
   const element = screen.getByRole('button', {name: /Add/i});
+  const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
+
+  fireEvent.change(inputTask, { target: { value: "History Test"}});
+  fireEvent.change(inputDate, { target: { value: dueDate}});
+  fireEvent.click(element);
  });
 
 
@@ -55,4 +92,7 @@ afterEach(() => {
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
   const element = screen.getByRole('button', {name: /Add/i});
+  fireEvent.change(inputTask, { target: { value: "History Test"}});
+  fireEvent.change(inputDate, { target: { value: dueDate}});
+  fireEvent.click(element);
  });
